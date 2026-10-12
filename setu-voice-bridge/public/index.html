@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Setu — English · हिंदी · ಕನ್ನಡ</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon.svg">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1B1F3B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,500;0,700;1,500&family=Noto+Serif+Devanagari:wght@500;700&family=Noto+Serif+Kannada:wght@500;700&family=Noto+Sans:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500&family=Noto+Sans+Kannada:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header class="hero">
+  <p class="eyebrow">Setu · a bridge between languages</p>
+
+  <div class="bridge-signature" aria-hidden="true">
+    <span class="pillar en">Bridge</span>
+    <svg class="span-line" viewBox="0 0 300 40" preserveAspectRatio="none">
+      <path d="M0,20 Q75,2 150,20 T300,20" />
+    </svg>
+    <span class="pillar hi">सेतु</span>
+    <svg class="span-line" viewBox="0 0 300 40" preserveAspectRatio="none">
+      <path d="M0,20 Q75,38 150,20 T300,20" />
+    </svg>
+    <span class="pillar kn">ಸೇತು</span>
+  </div>
+
+  <h1>Speak or type in one language.<br>Hear and read it in the others.</h1>
+  <p class="sub">English becomes Hindi and Kannada, spoken and written. Hindi or Kannada becomes English. No app to install — just open this page.</p>
+</header>
+
+<main class="tool">
+
+  <section class="input-card" aria-label="Input">
+    <div class="input-tabs" role="tablist">
+      <button class="tab active" data-tab="speak" role="tab" aria-selected="true">Speak</button>
+      <button class="tab" data-tab="type" role="tab" aria-selected="false">Type</button>
+    </div>
+
+    <div class="panel" id="panel-speak">
+      <button id="recordBtn" class="record-btn" aria-pressed="false">
+        <span class="record-dot"></span>
+        <span class="record-label">Tap to speak</span>
+      </button>
+      <div class="waveform" id="waveform" hidden>
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <p class="hint">Works for English, Hindi, or Kannada — the language is detected automatically.</p>
+    </div>
+
+    <div class="panel" id="panel-type" hidden>
+      <label class="field-label" for="sourceLang">I'm typing in</label>
+      <div class="lang-picker" id="sourceLang" role="radiogroup">
+        <button class="lang-pill en active" data-lang="en" role="radio" aria-checked="true">English</button>
+        <button class="lang-pill hi" data-lang="hi" role="radio" aria-checked="false">हिंदी</button>
+        <button class="lang-pill kn" data-lang="kn" role="radio" aria-checked="false">ಕನ್ನಡ</button>
+      </div>
+      <textarea id="textInput" placeholder="Type here…  (Ctrl+Enter to bridge)" rows="3" maxlength="1000"></textarea>
+      <p class="counter"><span id="charCount">0</span> / 1000</p>
+      <button id="submitText" class="submit-btn">Bridge it</button>
+    </div>
+
+    <div class="toggles">
+      <label class="toggle"><input type="checkbox" id="autoPlay" checked> Auto-play audio</label>
+    </div>
+    <p id="offlineBanner" class="offline" hidden>You're offline — translation needs an internet connection.</p>
+    <p id="statusMsg" class="status" role="status" aria-live="polite"></p>
+  </section>
+
+  <section class="results" id="results" hidden>
+    <div class="source-card" id="sourceCard">
+      <span class="source-tag" id="sourceTag"></span>
+      <p class="source-text" id="sourceText"></p>
+    </div>
+
+    <div class="output-track" id="outputTrack"></div>
+    <button class="start-over" id="startOverBtn" type="button">Start over</button>
+  </section>
+
+  <section class="history" id="historySection" hidden>
+    <div class="history-head">
+      <h2>Recent</h2>
+      <button class="clear-history" id="clearHistory" type="button">Clear</button>
+    </div>
+    <ul id="historyList"></ul>
+  </section>
+
+  <button id="installBtn" class="install-btn" type="button" hidden>Install Setu on this device</button>
+</main>
+
+<template id="outputCardTemplate">
+  <div class="output-card">
+    <div class="output-head">
+      <span class="output-lang"></span>
+      <div class="output-actions">
+        <button class="copy-btn" aria-label="Copy text" type="button">
+          <svg viewBox="0 0 24 24" class="icon-copy"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        </button>
+        <button class="play-btn" aria-label="Play audio" type="button">
+          <svg viewBox="0 0 24 24" class="icon-play"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+      </div>
+    </div>
+    <p class="output-text"></p>
+    <audio class="output-audio" preload="none"></audio>
+  </div>
+</template>
+
+<script src="app.js"></script>
+</body>
+</html>

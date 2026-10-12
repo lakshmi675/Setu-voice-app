@@ -1,0 +1,15 @@
+{
+  "name": "Setu — English · Hindi · Kannada",
+  "short_name": "Setu",
+  "description": "Speak or type in English, Hindi or Kannada and hear it in the others.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1B1F3B",
+  "theme_color": "#1B1F3B",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: setu-voice-bridge
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn -w 2 --threads 4 -t 90 -b 0.0.0.0:$PORT app:app
+    envVars:
+      - key: API_KEY
+        sync: false
